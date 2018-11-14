@@ -1,0 +1,16 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /ffmpeg
+spring:
+  data:
+    elasticsearch:
+      cluster-name: my-application
+      cluster-nodes: 127.0.0.1:9300
+      repositories:
+        enabled: true
+      properties:
+        client.transport.sniff: true # 自动查找集群下的节点
+
+
+
