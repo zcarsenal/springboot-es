@@ -1,0 +1,25 @@
+{
+  "mb-student": {
+    "properties": {
+      "date": {
+        "type": "date",
+        "format": "yyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis",
+        "fields": {
+          "keyword": {
+            "ignore_above": 256,
+            "type": "keyword"
+          }
+        }
+      },
+      "grade": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "ignore_above": 256,
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}

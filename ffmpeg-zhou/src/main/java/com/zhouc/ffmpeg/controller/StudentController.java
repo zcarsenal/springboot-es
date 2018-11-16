@@ -1,12 +1,13 @@
 package com.zhouc.ffmpeg.controller;
 
-import com.zhouc.ffmpeg.model.Student;
+import com.google.common.collect.Lists;
+import com.zhouc.ffmpeg.entity.Student;
 import com.zhouc.ffmpeg.repo.StudentRepository;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,12 +46,19 @@ public class StudentController {
   }
   @GetMapping("/address/{address}")
   public List<Student> getByID(String address) {
-    return studentRepository.findByAddress(address);
+    return studentRepository.findXxx(address);
   }
+
   @GetMapping("/address/page")
   public List<Student> getByPage(String address) {
-    Page<Student> byAddress = studentRepository.getByAddress(address);
-    return byAddress.get().collect(Collectors.toList());
+    BoolQueryBuilder builder = QueryBuilders.boolQuery();
+    builder.must(QueryBuilders.matchQuery("address",address));
+    Iterable<Student> search = studentRepository.search(builder);
+    List<Student> list = Lists.newArrayList();
+    search.forEach(student -> {
+      list.add(student);
+    });
+    return list;
   }
 
   @DeleteMapping("{index}")

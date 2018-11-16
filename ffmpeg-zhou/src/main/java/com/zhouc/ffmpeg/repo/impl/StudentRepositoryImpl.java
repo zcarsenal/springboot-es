@@ -1,6 +1,6 @@
 package com.zhouc.ffmpeg.repo.impl;
 
-import com.zhouc.ffmpeg.model.Student;
+import com.zhouc.ffmpeg.entity.Student;
 import com.zhouc.ffmpeg.repo.StudentOperations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

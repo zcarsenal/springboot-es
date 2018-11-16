@@ -1,6 +1,6 @@
 package com.zhouc.ffmpeg.repo;
 
-import com.zhouc.ffmpeg.model.Student;
+import com.zhouc.ffmpeg.entity.Student;
 import org.springframework.data.domain.Page;
 
 /**
