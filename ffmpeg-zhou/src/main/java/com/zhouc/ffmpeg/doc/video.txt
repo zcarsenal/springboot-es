@@ -1,0 +1,36 @@
+1. term filter/query （数字，boolean，date）
+ 对搜索文本不分词，直接拿去倒排索引中匹配，你输入的是什么，就去匹配什么
+ articleID.keyword 不分词
+2. 先进行filter在进行query  ， bigset缓存[0,1,0,0,0,1]
+ query会计算相关度分数，根据score进行排序
+ filter只是简单的过滤出想要的数据，不计算分数也不排序
+3. bool filter
+4. terms 搜索多个值（类似于sql中的in）
+5. range filter 进行范围过滤
+6. match query 全文检索，如果药检所的field是not_analyzed 那么match query == term query
+   operator (and or)
+   minimum_should_match  (匹配概率) 去长尾 long tail
+7. boost可以将某个搜索条件的权重加大
+8. best_field 搜索到的field匹配到尽可能多的keyword
+   dis_max 语法 获取多个字段匹配最高的那个
+   tie_breaker 将其他query的分数，乘以tie_breaker
+9. multi_match 语法
+10.most_fields 尽可能返回更多field匹配到某个关键字的doc 优先返回回来 不能使用minimum_should_match去长尾
+11.cross_field 跨多个字段查询
+12.copy_to 合并成一个字段 mapping操作
+13.match_phrase 短语匹配
+   proximity_match 近似匹配
+TF/ITF算法
+
+
+
+
+
+
+
+
+
+
+
+
+
