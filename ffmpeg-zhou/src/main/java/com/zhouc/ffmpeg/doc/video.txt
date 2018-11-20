@@ -7,7 +7,7 @@
 3. bool filter
 4. terms 搜索多个值（类似于sql中的in）
 5. range filter 进行范围过滤
-6. match query 全文检索，如果药检所的field是not_analyzed 那么match query == term query
+6. match query 全文检索，如果要检索的field是not_analyzed 那么match query == term query
    operator (and or)
    minimum_should_match  (匹配概率) 去长尾 long tail
 7. boost可以将某个搜索条件的权重加大
@@ -18,9 +18,22 @@
 10.most_fields 尽可能返回更多field匹配到某个关键字的doc 优先返回回来 不能使用minimum_should_match去长尾
 11.cross_field 跨多个字段查询
 12.copy_to 合并成一个字段 mapping操作
-13.match_phrase 短语匹配
+13.match_phrase 短语匹配 slop
    proximity_match 近似匹配
-TF/ITF算法
+TF/IDF算法
+TF: term frequency
+IDF: inverse document frequency
+length norm
+
+14. 召回率 recall
+    精准度 precision
+15. 前缀搜索 prefix ,不计算相关度分数
+    通配符搜索 wildcard  eg: 5?-*5 , 必须扫描所有的倒排索引 性能较差
+    正则搜索 regexp
+16. 搜索推荐 match_phrase_prefix
+     max_expansions 最多匹配多少个term,超过该数字不搜索了
+17. ngram 实时分词查询；edge ngram
+
 
 
 
