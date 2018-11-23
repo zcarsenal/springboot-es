@@ -13,7 +13,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
  * @author Created by zhouc on 2018/11/21 0021.
  */
 @Data
-@Document(indexName = "mb-order-index", type = "order",createIndex = false)
+@Document(indexName = "mb-order-index")
 public class Order {
 
   @Id

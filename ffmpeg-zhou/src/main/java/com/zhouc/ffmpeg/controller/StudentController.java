@@ -3,8 +3,12 @@ package com.zhouc.ffmpeg.controller;
 import com.google.common.collect.Lists;
 import com.zhouc.ffmpeg.entity.Student;
 import com.zhouc.ffmpeg.repo.StudentRepository;
+import com.zhouc.ffmpeg.thread.Student1Runnable;
+import com.zhouc.ffmpeg.thread.StudentRunnable;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.NestedQueryBuilder;
@@ -27,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/stu")
+@Slf4j
 public class StudentController {
 
   @Autowired
@@ -73,17 +78,63 @@ public class StudentController {
     elasticsearchOperations.deleteIndex(index);
   }
 
-  @GetMapping("/query/nested/{keyword}")
-  public List<Student> queryNested(@PathVariable String keyword, int pageSize, int pageNumber) {
+  @GetMapping("/query/object/{cityName}/{cityId}")
+  public List<Student> queryNested(@PathVariable String cityName, @PathVariable String cityId,
+      int pageSize, int pageNumber) {
     BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
-    queryBuilder.must(QueryBuilders.termQuery("address.name.keyword", keyword));
+    queryBuilder.must(QueryBuilders.termQuery("address.name.keyword", cityName))
+        .must(QueryBuilders.termQuery("address.addressId", cityId));
     NestedQueryBuilder nestedQueryBuilder = QueryBuilders
         .nestedQuery("address", queryBuilder, ScoreMode.None);
     Pageable pageable = PageRequest.of(pageNumber, pageSize);
     Page<Student> search = studentRepository.search(nestedQueryBuilder, pageable);
     List<Student> list = Lists.newArrayList();
-    search.forEach(student ->list.add(student));
+    search.forEach(student -> list.add(student));
     return list;
+  }
+
+  @PostMapping("bulk/{size}/{now}")
+  public void save(@PathVariable int size, @PathVariable int now) {
+
+    //elasticsearchOperations.deleteIndex(Student.class);
+    //studentRepository.deleteAll();
+
+    int count = size + now;
+    CountDownLatch countDownLatch = new CountDownLatch(size);
+    long startTime = System.currentTimeMillis();
+    for (int i = now; i < count; i++) {
+      Thread thread = new Thread(new StudentRunnable(countDownLatch, i, studentRepository));
+      thread.start();
+    }
+    try {
+      countDownLatch.await();
+      long endTime = System.currentTimeMillis();
+      log.info("处理插入{}条数据 总用时:{}", size, (endTime - startTime));
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @PostMapping("bulk1/{size}")
+  public void save1(@PathVariable int size) {
+
+    //elasticsearchOperations.deleteIndex(Student.class);
+    studentRepository.deleteAll();
+
+    int count = size;
+    CountDownLatch countDownLatch = new CountDownLatch(count);
+    long startTime = System.currentTimeMillis();
+    for (int i = 0; i < count; i++) {
+      Thread thread = new Thread(new Student1Runnable(countDownLatch, i, studentRepository));
+      thread.start();
+    }
+    try {
+      countDownLatch.await();
+      long endTime = System.currentTimeMillis();
+      log.info("处理插入{}万条数据 总用时:{}", size, (endTime - startTime));
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
 }

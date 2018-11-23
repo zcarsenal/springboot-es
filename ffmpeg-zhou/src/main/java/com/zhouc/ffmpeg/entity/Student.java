@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.DateFormat;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -17,6 +18,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
  */
 @Data
 @Document(indexName = "mb-otc-mt", type = "mb-student", shards = 3)
+@Accessors(chain = true)
 //@Mapping(mappingPath = "mapping/student.json")
 public class Student {
 
