@@ -1,17 +1,22 @@
 package com.zhouc.ffmpeg.controller;
 
 import com.google.common.collect.Lists;
+import com.zhouc.ffmpeg.entity.Address;
 import com.zhouc.ffmpeg.entity.Student;
 import com.zhouc.ffmpeg.repo.StudentRepository;
 import com.zhouc.ffmpeg.thread.Student1Runnable;
 import com.zhouc.ffmpeg.thread.StudentRunnable;
+import com.zhouc.ffmpeg.util.PkGenerator;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.search.join.ScoreMode;
 import org.elasticsearch.index.query.BoolQueryBuilder;
-import org.elasticsearch.index.query.NestedQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +45,9 @@ public class StudentController {
   @Autowired
   private ElasticsearchOperations elasticsearchOperations;
 
+  @Autowired
+  private PkGenerator pkGenerator;
+
   @PostMapping
   public void save(@RequestBody Student student) {
     studentRepository.save(student);
@@ -51,9 +59,35 @@ public class StudentController {
   }
 
   @GetMapping("/{id}")
-  public Student getByID(Long id) {
+  public Student getByID(@PathVariable Long id) {
     Optional<Student> student = studentRepository.findById(id);
     return student.get();
+  }
+
+  @GetMapping("/clean")
+  public void clean(){
+    studentRepository.deleteAll();
+  }
+
+  @GetMapping("/save/ab")
+  public void abSave() {
+    Student student = new Student();
+    long id = pkGenerator.nextId();
+    student.setId(id)
+        .setName("张三" + id)
+        .setAge(30)
+        .setDate(new Date())
+        .setGrade("三年级")
+        .setScore(new BigDecimal(100));
+    List<Address> list = Lists.newArrayList();
+    Address address = new Address();
+    address.setName("天津").setAddressId(1);
+    Address address1 = new Address();
+    address1.setName("北京").setAddressId(2);
+    list.add(address);
+    list.add(address1);
+    student.setAddress(list);
+    studentRepository.save(student);
   }
 
   @GetMapping("/address/{address}")
@@ -84,13 +118,11 @@ public class StudentController {
     BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
     queryBuilder.must(QueryBuilders.termQuery("address.name.keyword", cityName))
         .must(QueryBuilders.termQuery("address.addressId", cityId));
-    NestedQueryBuilder nestedQueryBuilder = QueryBuilders
+    QueryBuilder nestedQueryBuilder = QueryBuilders
         .nestedQuery("address", queryBuilder, ScoreMode.None);
     Pageable pageable = PageRequest.of(pageNumber, pageSize);
     Page<Student> search = studentRepository.search(nestedQueryBuilder, pageable);
-    List<Student> list = Lists.newArrayList();
-    search.forEach(student -> list.add(student));
-    return list;
+    return search.stream().map(student -> student).collect(Collectors.toList());
   }
 
   @PostMapping("bulk/{size}/{now}")

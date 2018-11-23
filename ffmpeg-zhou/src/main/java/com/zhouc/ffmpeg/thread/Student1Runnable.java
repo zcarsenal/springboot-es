@@ -36,7 +36,7 @@ public class Student1Runnable implements Runnable {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }*/
-    for (int i = 0; i < 100 ; i++) {
+    for (int i = 0; i < 100000 ; i++) {
       log.info("开始处理线程数据");
       Student student = new Student();
       student.setId(Long.valueOf(i*id))

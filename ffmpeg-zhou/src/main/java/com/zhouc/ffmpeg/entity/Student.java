@@ -2,6 +2,8 @@ package com.zhouc.ffmpeg.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +25,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class Student {
 
   @Id
+  @JsonSerialize(using = ToStringSerializer.class)
   private Long id;
   @Field(type = FieldType.Text)
   private String name;
