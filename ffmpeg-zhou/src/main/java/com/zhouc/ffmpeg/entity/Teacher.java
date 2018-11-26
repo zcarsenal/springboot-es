@@ -29,9 +29,9 @@ public class Teacher {
   private String grade;
   /**
    * 底层存储结构
-   * teacher.address: {
-   *    addressId:[1,2,3],
-   *    name:["张三","李四","王五"]
+   * teacher: {
+   *    address.addressId:[1,2,3],
+   *    address.name:["张三","李四","王五"]
    * }
    */
   @Field(type = FieldType.Object)

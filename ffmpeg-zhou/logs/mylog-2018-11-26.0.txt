@@ -1,0 +1,42 @@
+2018-11-26 10:35:51.848 [main] INFO  com.zhouc.ffmpeg.FfmpegZhouApplication - Starting FfmpegZhouApplication on arsenal-zhou-20170812ZQG with PID 8692 (D:\Users\Administrator\Documents\springboot-es\ffmpeg-zhou\target\classes started by Administrator in D:\Users\Administrator\Documents\springboot-es\ffmpeg-zhou)
+2018-11-26 10:35:51.853 [main] INFO  com.zhouc.ffmpeg.FfmpegZhouApplication - No active profile set, falling back to default profiles: default
+2018-11-26 10:35:53.405 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2018-11-26 10:35:53.548 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 134ms. Found 4 repository interfaces.
+2018-11-26 10:35:54.661 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2018-11-26 10:35:54.685 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2018-11-26 10:35:54.698 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2018-11-26 10:35:54.699 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet Engine: Apache Tomcat/9.0.12
+2018-11-26 10:35:54.833 [main] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\Program Files\Java\jdk1.8.0_45\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Lenovo\Fingerprint Manager Pro\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;D:\Program Files\Java\jdk1.8.0_45\bin;D:\Program Files\Java\jdk1.8.0_45\jre\bin;D:\Program Files\TortoiseSVN\bin;D:\apache-maven-3.5.0-bin\apache-maven-3.5.0\bin;D:\Program Files\MySQL\MySQL Server 5.6\bin;D:\Program Files\Python3.6.2;D:\Program Files\Python3.6.2\Lib\site-packages\Django-1.11.4-py3.6.egg\django\bin;D:\Program Files\Python3.6.2\Scripts;D:\Program Files\nodejs\;D:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.12\sbin;D:\spring-1.5.8.RELEASE\bin;D:\Program Files\mongodb\bin;D:\Program Files (x86)\Tesseract-OCR;D:\Program Files\gradle-4.9\bin;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\Programs\Fiddler;.]
+2018-11-26 10:35:55.094 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/ffmpeg] - Initializing Spring embedded WebApplicationContext
+2018-11-26 10:35:55.095 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 3151 ms
+2018-11-26 10:35:55.138 [main] INFO  o.s.boot.web.servlet.ServletRegistrationBean - Servlet dispatcherServlet mapped to [/]
+2018-11-26 10:35:55.145 [main] INFO  o.s.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-11-26 10:35:55.145 [main] INFO  o.s.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-11-26 10:35:55.145 [main] INFO  o.s.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'formContentFilter' to: [/*]
+2018-11-26 10:35:55.145 [main] INFO  o.s.boot.web.servlet.FilterRegistrationBean - Mapping filter: 'requestContextFilter' to: [/*]
+2018-11-26 10:35:55.662 [main] INFO  org.elasticsearch.plugins.PluginsService - no modules loaded
+2018-11-26 10:35:55.663 [main] INFO  org.elasticsearch.plugins.PluginsService - loaded plugin [org.elasticsearch.index.reindex.ReindexPlugin]
+2018-11-26 10:35:55.663 [main] INFO  org.elasticsearch.plugins.PluginsService - loaded plugin [org.elasticsearch.join.ParentJoinPlugin]
+2018-11-26 10:35:55.663 [main] INFO  org.elasticsearch.plugins.PluginsService - loaded plugin [org.elasticsearch.percolator.PercolatorPlugin]
+2018-11-26 10:35:55.663 [main] INFO  org.elasticsearch.plugins.PluginsService - loaded plugin [org.elasticsearch.script.mustache.MustachePlugin]
+2018-11-26 10:35:55.663 [main] INFO  org.elasticsearch.plugins.PluginsService - loaded plugin [org.elasticsearch.transport.Netty4Plugin]
+2018-11-26 10:35:57.600 [main] INFO  o.s.d.e.client.TransportClientFactoryBean - Adding transport node : 127.0.0.1:9300
+2018-11-26 10:35:59.130 [main] ERROR o.s.d.e.r.support.AbstractElasticsearchRepository - failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{S8-LsGaVT1SyNv1q4AmHEA}{127.0.0.1}{127.0.0.1:9300}]
+2018-11-26 10:35:59.223 [main] ERROR o.s.d.e.r.support.AbstractElasticsearchRepository - failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{S8-LsGaVT1SyNv1q4AmHEA}{127.0.0.1}{127.0.0.1:9300}]
+2018-11-26 10:35:59.301 [main] ERROR o.s.d.e.r.support.AbstractElasticsearchRepository - failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{S8-LsGaVT1SyNv1q4AmHEA}{127.0.0.1}{127.0.0.1:9300}]
+2018-11-26 10:35:59.333 [main] ERROR o.s.d.e.r.support.AbstractElasticsearchRepository - failed to load elasticsearch nodes : org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{S8-LsGaVT1SyNv1q4AmHEA}{127.0.0.1}{127.0.0.1:9300}]
+2018-11-26 10:36:00.358 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2018-11-26 10:36:01.009 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2018-11-26 10:36:01.057 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2018-11-26 10:36:01.084 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2018-11-26 10:36:01.372 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getByIDUsingGET_1
+2018-11-26 10:36:01.404 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: saveUsingPOST_1
+2018-11-26 10:36:01.418 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: saveUsingPOST_2
+2018-11-26 10:36:01.438 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: queryNestedUsingGET_1
+2018-11-26 10:36:01.448 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: saveUsingPOST_3
+2018-11-26 10:36:01.480 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2018-11-26 10:36:01.481 [main] INFO  org.apache.tomcat.util.net.NioSelectorPool - Using a shared selector for servlet write/read
+2018-11-26 10:36:01.506 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path '/ffmpeg'
+2018-11-26 10:36:01.510 [main] INFO  com.zhouc.ffmpeg.FfmpegZhouApplication - Started FfmpegZhouApplication in 10.421 seconds (JVM running for 14.246)
+2018-11-26 10:36:01.513 [main] INFO  c.zhouc.ffmpeg.listener.ApplicationStartupListener - >>>>>>>>>>>>>>>APPLICATION STARTUP LISTENER IS RUNNING<<<<<<<<<<<<<
+2018-11-26 10:36:01.513 [main] INFO  c.zhouc.ffmpeg.listener.ApplicationStartupListener - >>>>>>>>>>>>>>>APPLICATION STARTUP LISTENER IS COMPLETED<<<<<<<<<<<<<

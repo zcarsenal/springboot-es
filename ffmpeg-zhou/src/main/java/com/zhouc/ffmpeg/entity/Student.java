@@ -19,7 +19,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
  * @author Created by zhouc on 2018/11/14 0014.
  */
 @Data
-@Document(indexName = "mb-otc-mt", type = "mb-student", shards = 3)
+@Document(indexName = "mb-otc-mt", shards = 3)
 @Accessors(chain = true)
 //@Mapping(mappingPath = "mapping/student.json")
 public class Student {
