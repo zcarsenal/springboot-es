@@ -43,4 +43,91 @@ storm优点
 Topology
 ----------------
     Spout + bolt连接在一起形成一个Topology，形成有向图，顶点就是计算，边是数据流。
+task
+------------------
+    Bolt中每个Spout或者bolt都是一个task.
 
+Storm架构
+---------------------
+    1.Nimbus(灵气)
+        master节点。
+        核心组件，运行top。
+        分析top并收集运行task。分发task给supervisor.
+        监控top。
+        无状态，依靠zk监控top的运行状况。
+
+    2.Supervisor(监察)
+        每个supervisor有n个worker进程，负责代理task给worker。
+        worker在孵化执行线程最终运行task。
+        storm使用内部消息系统在nimbus和supervisor之间进行通信。
+
+        接受nimbus指令，管理worker进程完成task派发。
+
+    3.worker
+        执行特定的task，worker本身不执行任务，而是孵化executors，
+        让executors执行task。
+
+    4.Executor
+        本质上由worker进程孵化出来的一个线程而已。
+        executor运行task都属于同一spout或者bolt.
+
+    5.task
+        执行实际上的任务处理。或者是Spout或者是bolt.
+
+storm工作流程
+----------------
+    1.nimbus等待提交的top。
+    2.提交top后，nimbus收集task。
+    3.nimbus分发task给所有可用的supervisor。
+    4.supervisor周期性发送心跳给nimbus表示自己还活着。
+    5.如果supervisor挂掉，不会发送心跳给nimubs，nimbus将task发送给其他的supervisor。
+    6.nimubs挂掉，super会继续执行自己task。
+    7.task完成后，supervisor等待新的task。
+    8.同时，挂掉的nimbus可以通过监控工具软件自动重启。
+
+安装storm集群
+------------------
+    [s201 ~ s204]
+    1.jdk
+    2.tar
+    3.环境变量
+    4.验证安装
+        $>source /etc/profile
+        $>./storm version
+    5.分发安装文件到其他节点。
+
+    6.配置
+        [storm/conf/storm.yaml]
+        storm.local.dir: "/home/centos/storm"
+        storm.zookeeper.servers:
+            - "s202"
+            - "s203"
+
+        storm.zookeeper.port: 2181
+
+        ### nimbus.* configs are for the master
+        nimbus.seeds : ["s201"]
+
+        ### ui.* configs are for the master
+        ui.host: 0.0.0.0
+        ui.port: 8080
+
+        supervisor.slots.ports:
+            - 6700
+            - 6701
+            - 6702
+            - 6703
+    7.分发
+
+    8.启动进程
+        a)启动s201 nimbus进程
+            $>storm nimbus &
+
+        b)启动s202 ~ s204 supervisor进程
+            $>storm supervisor &
+
+        c)启动s201的ui进程
+            $>storm ui &
+
+    9.通过webui查看
+        http://s201:8080/
