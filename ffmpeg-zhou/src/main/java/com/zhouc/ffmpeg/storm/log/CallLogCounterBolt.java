@@ -1,4 +1,4 @@
-package com.zhouc.ffmpeg.storm;
+package com.zhouc.ffmpeg.storm.log;
 
 import com.google.common.collect.Maps;
 import java.util.Map;

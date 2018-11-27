@@ -1,4 +1,4 @@
-package com.zhouc.ffmpeg.storm;
+package com.zhouc.ffmpeg.storm.log;
 
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
