@@ -20,7 +20,7 @@ public class WorldSpout implements IRichSpout {
 
   private SpoutOutputCollector collector;
 
-  private List<String> world;
+  private List<String> words;
 
   private Random random = new Random();
 
@@ -29,11 +29,11 @@ public class WorldSpout implements IRichSpout {
       SpoutOutputCollector collector) {
     this.context = context;
     this.collector = collector;
-    world = Lists.newArrayList();
-    world.add("hello world json");
-    world.add("hello world jack");
-    world.add("hello world mack");
-    world.add("hello world tomas");
+    words = Lists.newArrayList();
+    words.add("hello words json");
+    words.add("hello words jack");
+    words.add("hello words mack");
+    words.add("hello words tomas");
   }
 
   @Override
@@ -53,7 +53,7 @@ public class WorldSpout implements IRichSpout {
 
   @Override
   public void nextTuple() {
-    collector.emit(new Values(world.get(random.nextInt(4))));
+    collector.emit(new Values(words.get(random.nextInt(4))));
   }
 
   @Override

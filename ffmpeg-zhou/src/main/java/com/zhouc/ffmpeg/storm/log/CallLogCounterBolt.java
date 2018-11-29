@@ -30,8 +30,8 @@ public class CallLogCounterBolt implements IRichBolt {
 
   @Override
   public void execute(Tuple tuple) {
-    String call = tuple.getString(0);
-    Integer duration = tuple.getInteger(1);
+    final String call = tuple.getString(0);
+    final Integer duration = tuple.getInteger(1);
     log.info("通话信息:{},通话时长:{}",call,duration);
     if (!countMap.containsKey(call)) {
       countMap.put(call, 1);

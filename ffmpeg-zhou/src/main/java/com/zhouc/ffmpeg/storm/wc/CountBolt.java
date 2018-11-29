@@ -43,12 +43,12 @@ public class CountBolt implements IRichBolt {
 
   @Override
   public void cleanup() {
-    System.out.println("======================");
+    log.info("======================");
     map.forEach((key, value) -> {
-      System.out.println("1111111111111111111111111111111");
+      log.info("1111111111111111111111111111111");
       log.info("单词为:{},出现的次数为：{}", key, value);
     });
-    System.out.println("==========================");
+    log.info("==========================");
   }
 
   @Override

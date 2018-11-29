@@ -13,7 +13,7 @@ public class App {
 
   public static void main(String[] args) throws InterruptedException {
     TopologyBuilder builder = new TopologyBuilder();
-    builder.setSpout("word-spout",new WorldSpout());
+    builder.setSpout("word-spout",new WorldSpout(),3);
     builder.setBolt("split-bolt",new SpliteBolt()).shuffleGrouping("word-spout");
     builder.setBolt("count-bolt",new CountBolt()).fieldsGrouping("split-bolt",new Fields("word"));
 
