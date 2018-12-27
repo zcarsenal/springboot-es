@@ -1,0 +1,26 @@
+flume
+--------------
+    收集日志、移动、聚合框架。
+    基于事件。
+
+agent
+-------------
+    source      //接收数据,生产者
+                //put()
+                //NetcatSource
+                //ExecSource,实时收集 tail -F xxx.txt
+                //spooldir 监控文件夹
+                //seq 连续产生
+                //Stress 压力测试
+                //avroSource
+
+    channel     //暂存数据，缓冲区,
+                //非永久性:MemoryChannel
+                //永久性  :FileChannel,磁盘.
+                //SpillableMemoryChannel :Mem + FileChannel.Capacity
+
+    sink        //输出数据,消费者
+                //从channel提取take()数据,write()destination(目的地).
+                //HdfsSink
+                //HbaseSink
+                //avroSink

@@ -116,7 +116,7 @@ public class StudentController {
   public List<Student> queryNested(@PathVariable String cityName, @PathVariable String cityId,
       int pageSize, int pageNumber) {
     BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
-    queryBuilder.must(QueryBuilders.termQuery("address.name.keyword", cityName))
+    queryBuilder.must(QueryBuilders.termQuery("address.name", "*"+cityName+"*"))
         .must(QueryBuilders.termQuery("address.addressId", cityId));
     QueryBuilder nestedQueryBuilder = QueryBuilders
         .nestedQuery("address", queryBuilder, ScoreMode.None);

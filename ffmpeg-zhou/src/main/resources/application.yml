@@ -11,6 +11,9 @@ spring:
         enabled: true
       properties:
         client.transport.sniff: true # 自动查找集群下的节点
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 
 

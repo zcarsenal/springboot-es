@@ -27,7 +27,7 @@ public class Student {
   @Id
   @JsonSerialize(using = ToStringSerializer.class)
   private Long id;
-  @Field(type = FieldType.Text)
+  @Field(type = FieldType.Keyword)
   private String name;
   //@Field(type = FieldType.Integer ,ignoreFields = "age")
   @JsonIgnore
@@ -36,6 +36,10 @@ public class Student {
   private BigDecimal score;
   @Field(type = FieldType.Text)
   private String grade;
+
+  @Field(type = FieldType.Integer)
+  private Integer status;
+
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
   @Field(type = FieldType.Date, format = DateFormat.custom,
       pattern = "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis")

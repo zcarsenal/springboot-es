@@ -6,8 +6,8 @@ Hive离线计算 OLAP 在线处理离线计算
 -----------
     免费、开源、分布式、实时计算系统。
     吞吐量高。
+
     每秒每节点百万元组。
-    spout数据的来源
 
     storm                   hadoop
 -----------------------------
@@ -45,7 +45,7 @@ Topology
     Spout + bolt连接在一起形成一个Topology，形成有向图，顶点就是计算，边是数据流。
 task
 ------------------
-    Bolt中每个Spout或者bolt都是一个task.
+    每个Spout或者bolt都是一个task.
 
 Storm架构
 ---------------------
@@ -135,7 +135,7 @@ day02
 1. 分组策略
    1. shuffle 随机分组
    2. field分组
-      按照指定field的key进行hash处理
+      按照指定field的key进行hash处理 (普通 或者 一致性 hash)
       相同的field,一定进入到同一个bolt
    3. all分组
       使用广播分组 见着有份

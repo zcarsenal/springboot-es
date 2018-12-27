@@ -1,0 +1,22 @@
+JMS
+---------------
+    java message service,java消息服务。
+
+    queue       //只有能有一个消费者。P2P模式(点对点).
+    topic       //发布订阅(publish-subscribe,主题模式)，
+
+kafka
+--------------
+    分布式流处理平台。
+    在系统之间构建实时数据流管道。
+    以topic分类对记录进行存储
+    每个记录包含key-value+timestamp
+    每秒钟百万消息吞吐量。
+
+
+    producer            //消息生产者
+    consumer            //消息消费者
+    consumer group      //消费者组
+    kafka server        //broker,kafka服务器
+    topic               //主题,副本数,分区.
+    zookeeper           //hadoop namenoade + RM HA | hbase | kafka
